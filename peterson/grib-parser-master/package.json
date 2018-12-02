@@ -1,0 +1,25 @@
+{
+  "name": "grib-parser",
+  "version": "1.0.0",
+  "description": "YHacks",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsgc-peterson-e/grib-parser.git"
+  },
+  "keywords": [
+    "GRIB"
+  ],
+  "author": "Ethan Peterson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rsgc-peterson-e/grib-parser/issues"
+  },
+  "homepage": "https://github.com/rsgc-peterson-e/grib-parser#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

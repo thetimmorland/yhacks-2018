@@ -1,0 +1,5 @@
+*.log
+*.f000
+*.grib2
+*.UGRD
+*.VGRD
