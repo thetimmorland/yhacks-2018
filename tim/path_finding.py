@@ -4,12 +4,15 @@ import pygrib, numpy, networkx
 
 def main():
 
+    # Open weather data files
     dirFile = pygrib.open('gfs.t18z.pgrb2.0p25.f008.VGRD')
     vFile = pygrib.open('gfs.t18z.pgrb2.0p25.f008.UGRD')
 
+    # Extract primary message
     vMessage = vFile.message(1)
     dirMessage = dirFile.message(1)
 
+    # Extract subset of global grid for faster processing
     globalGrid = gribToDict(vMessage, dirMessage)
     extractGrid = extractData(globalGrid, 100, 100)
 
@@ -36,7 +39,7 @@ def gribToDict(v, d):
 
 def extractData(superSet, h, w):
     
-    resolution = 0.25
+    resolution = 0.25 # 0.25 degree grid resolution
     gridDimention = int(360 / resolution)
 
     data = superSet
@@ -65,20 +68,24 @@ def buildGraph(grid):
 
             a = i * grid['width'] + j
 
+            # if there is a node to the left, connect it
             if (i < grid['width']):
                 b = a + 1
                 graph.add_edge(a, b, weight=avg(a,b))
 
 
+                # if there is a node to the [down, left] connect it
                 if (j < grid['height']):
                     b = a + grid['width'] + 1
                     graph.add_edge(a, b, weight=avg(a,b))
 
+            # if there is a node to the [down, right] connect it
             if (i > 0 and j < grid['height']):
                 b = a + grid['width'] - 1
                 graph.add_edge(a, b, weight=avg(a,b))
 
             
+            # if there is a node below connect it
             if (j < grid['height']):
                 b = a + grid['width']
                 graph.add_edge(a, b, weight=avg(a,b))
