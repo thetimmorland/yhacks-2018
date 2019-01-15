@@ -1,1 +1,1 @@
-# The boys take Yale.
+# Yale Hacks 2018
